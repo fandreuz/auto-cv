@@ -31,5 +31,5 @@ resource "aws_s3_object" "object" {
   bucket = aws_s3_bucket.cv_rendering_pkg_bucket.id
   key    = "cv_rendering_pkg.zip"
   source = "${path.module}/target.zip"
-  etag = "${path.module}/target.zip"
+  etag   = "${path.module}/target.zip"
 }
