@@ -28,8 +28,17 @@ resource "aws_s3_bucket_versioning" "versioning" {
 }
 
 resource "aws_s3_object" "object" {
-  bucket = aws_s3_bucket.cv_rendering_pkg_bucket.id
-  key    = "cv_rendering_pkg.zip"
-  source = "${path.module}/target.zip"
-  etag   = "${path.module}/target.zip"
+  bucket      = aws_s3_bucket.cv_rendering_pkg_bucket.id
+  key         = "cv_rendering_pkg.zip"
+  source      = "${path.module}/target.zip"
+  etag        = filemd5("${path.module}/target.zip")
+  source_hash = filemd5("${path.module}/target.zip")
+}
+
+output "s3_bucket_id" {
+  value = aws_s3_bucket.cv_rendering_pkg_bucket.id
+}
+
+output "s3_bucket_key" {
+  value = aws_s3_object.object.key
 }
