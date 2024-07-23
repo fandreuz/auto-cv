@@ -8,26 +8,6 @@
 
 set -eux
 
-temp_dir=$(mktemp -d)
-venv_name=venv
-# We're gonna cd soon
-target_dir=$(realpath $target_dir)
-source_code_dir=$(realpath $source_code_dir)
-
-wget https://bootstrap.pypa.io/get-pip.py && $python_executable get-pip.py --user
-
-clean_up () {
-    ARG=$?
-    rm -rf $temp_dir
-    exit $ARG
-}
-trap clean_up EXIT
-
-cd $temp_dir
-$python_executable -m venv $venv_name
-source $venv_name/bin/activate
-$python_executable -m pip install $source_code_dir
-
 rm -rf $target_dir
 mkdir $target_dir
-cp -r $venv_name/lib/*/site-packages/* $target_dir
+$python_executable -m pip install $source_code_dir --target $target_dir
