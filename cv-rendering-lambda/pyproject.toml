@@ -1,3 +1,6 @@
+[build-system]
+requires = ["setuptools"]
+
 [project]
 name = "cv-rendering"
 version = "0.0.1"
@@ -6,3 +9,6 @@ requires-python = ">=3.8"
 authors = [
   {name = "Francesco Andreuzzi", email = "andreuzzi.francesco@gmail.com"},
 ]
+
+[tool.setuptools.packages.find]
+where = ["cv_rendering"]
