@@ -1,6 +1,6 @@
-variable "lambda_package_dir" {
+variable "lambda_package_zip" {
   type    = string
-  default = "target"
+  default = "target.zip"
 }
 
 data "aws_iam_policy_document" "assume_role" {
@@ -31,24 +31,5 @@ resource "aws_lambda_function" "test_lambda" {
   memory_size = 128
   timeout     = 300
 
-  filename = data.archive_file.create_lambda_package_zip.output_path
-}
-
-resource "terraform_data" "create_lambda_package" {
-  provisioner "local-exec" {
-    command = "bash ${path.module}/../cv-rendering-lambda/bootstrap-environment.sh"
-
-    environment = {
-      source_code_dir      = "${path.module}/../cv-rendering-lambda"
-      target_dir           = "${path.module}/${var.lambda_package_dir}"
-      python_executable    = "python3"
-    }
-  }
-}
-
-data "archive_file" "create_lambda_package_zip" {
-  depends_on  = [terraform_data.create_lambda_package]
-  source_dir  = "${path.module}/${var.lambda_package_dir}"
-  output_path = "${path.module}/${var.lambda_package_dir}.zip"
-  type        = "zip"
+  filename = "${path.module}/../cv-rendering-lambda/${lambda_package_zip}"
 }
