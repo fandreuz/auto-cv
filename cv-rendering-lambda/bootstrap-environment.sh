@@ -4,6 +4,7 @@
 # - source_code_dir
 # - source_code_filename
 # - target_dir
+# - python_executable
 
 temp_dir=$(mktemp -d)
 venv_name=venv
@@ -19,9 +20,9 @@ clean_up () {
 trap clean_up EXIT
 
 cd $temp_dir
-python -m venv $venv_name
+$python_executable -m venv $venv_name
 source $venv_name/bin/activate
-python -m pip install $source_code_dir
+$python_executable -m pip install $source_code_dir
 
 rm -rf $target_dir
 mkdir $target_dir
