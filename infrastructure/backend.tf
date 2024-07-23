@@ -1,6 +1,11 @@
-variable "lambda_package_zip" {
+variable "s3_bucket_id" {
   type    = string
-  default = "target.zip"
+  default = "cv-rendering-pkg-bucket20240723210849196900000001"
+}
+
+variable "s3_bucket_key" {
+  type    = string
+  default = "cv_rendering_pkg.zip"
 }
 
 data "aws_iam_policy_document" "assume_role" {
@@ -31,5 +36,6 @@ resource "aws_lambda_function" "test_lambda" {
   memory_size = 128
   timeout     = 300
 
-  filename = "${path.module}/../cv-rendering-lambda/${var.lambda_package_zip}"
+  s3_bucket = var.s3_bucket_id
+  s3_key    = var.s3_bucket_key
 }
