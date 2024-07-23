@@ -1,4 +1,7 @@
 **/*.zip
+**/.terraform/**
+**/.terraform.lock.hcl
+**/*.tfstate
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
