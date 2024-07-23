@@ -16,6 +16,7 @@ mkdir $target_dir
 $python_executable -m pip install $source_code_dir --target $target_dir
 find target -type d -name '*.dist-info' -exec rm -rf {} +
 find target -type d -name '__pycache__' -exec rm -rf {} +
+rm -rf $source_code_dir/build
 
 zip -r $target_dir.zip $target_dir
 rm -rf $target_dir

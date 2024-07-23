@@ -5,10 +5,10 @@ requires = ["setuptools"]
 name = "cv-rendering"
 version = "0.0.1"
 dependencies = ["rendercv"]
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 authors = [
   {name = "Francesco Andreuzzi", email = "andreuzzi.francesco@gmail.com"},
 ]
 
 [tool.setuptools.packages.find]
-where = ["cv_rendering"]
+include = ["cv_rendering*"]
