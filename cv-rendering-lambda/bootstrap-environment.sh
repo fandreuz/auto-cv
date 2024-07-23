@@ -4,6 +4,8 @@
 # - source_code_dir
 # - target_dir
 # - python_executable
+# Unfortunately HPC Terraform does not support running Python, thus we need
+# to prepare the zip locally
 
 set -eux
 
