@@ -6,11 +6,15 @@
 # - target_dir
 # - python_executable
 
+set -eux
+
 temp_dir=$(mktemp -d)
 venv_name=venv
 # We're gonna cd soon
 target_dir=$(realpath $target_dir)
 source_code_dir=$(realpath $source_code_dir)
+
+wget https://bootstrap.pypa.io/get-pip.py && $python_executable get-pip.py --user
 
 clean_up () {
     ARG=$?
