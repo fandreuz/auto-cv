@@ -31,5 +31,5 @@ resource "aws_lambda_function" "test_lambda" {
   memory_size = 128
   timeout     = 300
 
-  filename = "${path.module}/../cv-rendering-lambda/${lambda_package_zip}"
+  filename = "${path.module}/../cv-rendering-lambda/${var.lambda_package_zip}"
 }
