@@ -47,7 +47,7 @@ resource "terraform_data" "create_lambda_package" {
 }
 
 data "archive_file" "create_lambda_package_zip" {
-  depends_on  = ["terraform_data.create_lambda_package"]
+  depends_on  = [terraform_data.create_lambda_package]
   source_dir  = "${path.module}/${var.lambda_package_dir}"
   output_path = "${path.module}/${var.lambda_package_dir}.zip"
   type        = "zip"
