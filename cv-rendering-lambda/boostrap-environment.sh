@@ -26,4 +26,3 @@ python -m pip install $source_code_dir
 rm -rf $target_dir
 mkdir $target_dir
 cp -r $venv_name/lib/*/site-packages/* $target_dir
-cp -r $source_code_dir/$source_code_filename $target_dir
