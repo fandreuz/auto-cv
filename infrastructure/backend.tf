@@ -40,7 +40,6 @@ resource "terraform_data" "create_lambda_package" {
 
     environment = {
       source_code_dir      = "${path.module}/../cv-rendering-lambda"
-      source_code_filename = "lambda.py"
       target_dir           = "${path.module}/${var.lambda_package_dir}"
       python_executable    = "python3"
     }

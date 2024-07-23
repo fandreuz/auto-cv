@@ -2,7 +2,6 @@
 
 # Expects:
 # - source_code_dir
-# - source_code_filename
 # - target_dir
 # - python_executable
 
