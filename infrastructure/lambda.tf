@@ -16,8 +16,8 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
-resource "aws_iam_role" "iam_cv_rendering_lambda" {
-  name               = "iam_cv_rendering_lambda"
+resource "aws_iam_role" "render_lambda_execution_role" {
+  name_prefix        = "render_lambda_execution_role"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
@@ -41,7 +41,7 @@ resource "aws_lambda_function" "rendering_lambda" {
   handler       = "lambda.lambda_handler"
   runtime       = "python3.11"
 
-  role        = aws_iam_role.iam_cv_rendering_lambda.arn
+  role        = aws_iam_role.render_lambda_execution_role.arn
   memory_size = 128
   timeout     = 300
 
