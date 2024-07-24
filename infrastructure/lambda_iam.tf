@@ -4,9 +4,12 @@ resource "aws_iam_role" "render_lambda_execution_role" {
     Version = "2012-10-17"
     Statement = [
       {
-        Resource = "*"
-        Action   = ["sts:AssumeRole"]
-        Effect   = "Allow"
+        Principals = {
+          type        = "Service"
+          Identifiers = ["lambda.amazonaws.com"]
+        }
+        Action = ["sts:AssumeRole"]
+        Effect = "Allow"
       },
     ]
   })
