@@ -1,26 +1,10 @@
-resource "aws_iam_policy" "queue_writer_policy" {
-  name_prefix = "auto-cv-work-queue-writer"
-
-  policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
+resource "aws_iam_policy" "sqs_writer_policy" {
+  policy = jsonencode({
+    "Version" : "2012-10-17"
+    Statement = [
       {
-        "Effect": "Allow",
-        "Action": [
-          "logs:CreateLogGroup",
-          "logs:CreateLogStream",
-          "logs:DescribeLogGroups",
-          "logs:DescribeLogStreams",
-          "logs:PutLogEvents",
-          "logs:GetLogEvents",
-          "logs:FilterLogEvents"
-        ],
-        "Resource": "*"
-      },
-      {
-        "Effect": "Allow",
-        "Action": [
+        "Effect" : "Allow",
+        "Action" : [
           "sqs:GetQueueUrl",
           "sqs:ChangeMessageVisibility",
           "sqs:ListDeadLetterSourceQueues",
@@ -34,20 +18,19 @@ resource "aws_iam_policy" "queue_writer_policy" {
           "sqs:ChangeMessageVisibilityBatch",
           "sqs:SetQueueAttributes"
         ],
-        "Resource": "${aws_sqs_queue.work_queue.arn}"
+        "Resource" : "${aws_sqs_queue.work_queue.arn}"
       },
       {
-        "Effect": "Allow",
-        "Action": "sqs:ListQueues",
-        "Resource": "*"
+        "Effect" : "Allow",
+        "Action" : "sqs:ListQueues",
+        "Resource" : "*"
       }
     ]
-}
-EOF
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "api" {
-  role       = aws_iam_role.queue_writer_role.name
+  role       = aws_iam_role.gateway_role.name
   policy_arn = aws_iam_policy.queue_writer_policy.arn
 }
 

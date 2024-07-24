@@ -1,4 +1,4 @@
-resource "aws_iam_role" "queue_writer_role" {
+resource "aws_iam_role" "gateway_role" {
   name_prefix = "auto-cv-queue-writer-role"
 
   assume_role_policy = jsonencode({

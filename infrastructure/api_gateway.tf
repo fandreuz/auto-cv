@@ -36,7 +36,7 @@ resource "aws_api_gateway_integration" "gateway_lambda_integration" {
   integration_http_method = aws_api_gateway_method.cv_resource.http_method
   type                    = "AWS"
   passthrough_behavior    = "NEVER"
-  credentials             = aws_iam_role.queue_writer_role.arn
+  credentials             = aws_iam_role.gateway_role.arn
   uri                     = "arn:aws:apigateway:${var.region}:sqs:path/${aws_sqs_queue.work_queue.name}"
 }
 
