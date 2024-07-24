@@ -18,7 +18,7 @@ resource "aws_api_gateway_resource" "cv_resource" {
 resource "aws_api_gateway_method" "cv_resource" {
   rest_api_id   = aws_api_gateway_rest_api.gateway.id
   resource_id   = aws_api_gateway_resource.cv_resource.id
-  http_method   = "ANY"
+  http_method   = "POST"
   authorization = "NONE"
 }
 
