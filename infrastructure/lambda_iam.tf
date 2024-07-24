@@ -14,24 +14,3 @@ resource "aws_iam_role" "render_lambda_execution_role" {
     ]
   })
 }
-
-resource "aws_iam_role_policy_attachment" "example_lambda" {
-  role       = aws_iam_role.render_lambda_execution_role.name
-  policy_arn = aws_iam_policy.render_lambda_execution_policy.arn
-}
-
-resource "aws_iam_policy" "render_lambda_execution_policy" {
-  policy = jsonencode({
-    Statement = [{
-      Sid       = "AllowSQSPermissions"
-      Effect    = "Allow"
-      Resources = ["arn:aws:sqs:*"]
-      Actions = [
-        "sqs:ChangeMessageVisibility",
-        "sqs:DeleteMessage",
-        "sqs:GetQueueAttributes",
-        "sqs:ReceiveMessage",
-      ] }
-    ]
-  })
-}
