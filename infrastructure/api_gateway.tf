@@ -64,7 +64,7 @@ resource "aws_api_gateway_model" "gateway_model" {
   "required": [ "identifier", "cv_yaml"],
   "properties": {
     "identifier": { "type": "string" },
-    "cv_yaml": { "type": "string" },
+    "cv_yaml": { "type": "string" }
   }
 }
 EOF
@@ -76,7 +76,7 @@ resource "aws_api_gateway_request_validator" "gateway_validator" {
   validate_request_body = true
 }
 
-resource "aws_api_gateway_integration_response" "200" {
+resource "aws_api_gateway_integration_response" "gateway_integration_response" {
   rest_api_id       = aws_api_gateway_rest_api.gateway.id
   resource_id       = aws_api_gateway_resource.cv_resource.id
   http_method       = aws_api_gateway_method.cv_resource.http_method
@@ -90,7 +90,7 @@ resource "aws_api_gateway_integration_response" "200" {
   depends_on = [aws_api_gateway_integration.gateway_lambda_integration]
 }
 
-resource "aws_api_gateway_method_response" "200" {
+resource "aws_api_gateway_method_response" "gateway_method_response" {
   rest_api_id = aws_api_gateway_rest_api.gateway.id
   resource_id = aws_api_gateway_resource.cv_resource.id
   http_method = aws_api_gateway_method.cv_resource.http_method
