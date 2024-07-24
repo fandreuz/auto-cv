@@ -29,4 +29,3 @@ resource "aws_lambda_event_source_mapping" "work_queue_to_lambda" {
   function_name                      = aws_lambda_function.rendering_lambda.arn
   maximum_batching_window_in_seconds = 10
 }
-
