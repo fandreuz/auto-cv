@@ -31,7 +31,7 @@ resource "aws_iam_policy" "sqs_writer_policy" {
 
 resource "aws_iam_role_policy_attachment" "api" {
   role       = aws_iam_role.gateway_role.name
-  policy_arn = aws_iam_policy.queue_writer_policy.arn
+  policy_arn = aws_iam_policy.sqs_writer_policy.arn
 }
 
 resource "aws_iam_role_policy_attachment" "example_lambda" {
