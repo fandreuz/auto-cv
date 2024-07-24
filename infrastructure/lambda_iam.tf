@@ -4,7 +4,7 @@ resource "aws_iam_role" "render_lambda_execution_role" {
     Version = "2012-10-17"
     Statement = [
       {
-        Principals = {
+        Principal = {
           type        = "Service"
           Identifiers = ["lambda.amazonaws.com"]
         }
