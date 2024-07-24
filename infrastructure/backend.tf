@@ -46,4 +46,5 @@ resource "aws_lambda_function" "test_lambda" {
   timeout     = 300
 
   filename = data.archive_file.lambda_code_pkg.output_path
+  layers   = [aws_lambda_layer_version.lambda_dependencies_pkg.arn]
 }
