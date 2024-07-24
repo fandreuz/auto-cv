@@ -24,8 +24,7 @@ resource "aws_lambda_function" "rendering_lambda" {
   runtime       = "python3.11"
 
   role        = aws_iam_role.render_lambda_execution_role.arn
-  memory_size = 128
-  timeout     = 300
+  timeout     = 15
 
   filename = data.archive_file.lambda_code_pkg.output_path
   layers   = [aws_lambda_layer_version.lambda_dependencies_pkg.arn]
