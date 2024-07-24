@@ -3,24 +3,6 @@ variable "s3_bucket_id" {
   default = "cv-rendering-pkg-bucket20240723210849196900000001"
 }
 
-data "aws_iam_policy_document" "assume_role" {
-  statement {
-    effect = "Allow"
-
-    principals {
-      type        = "Service"
-      identifiers = ["lambda.amazonaws.com"]
-    }
-
-    actions = ["sts:AssumeRole"]
-  }
-}
-
-resource "aws_iam_role" "render_lambda_execution_role" {
-  name_prefix        = "render_lambda_execution_role"
-  assume_role_policy = data.aws_iam_policy_document.assume_role.json
-}
-
 resource "aws_lambda_layer_version" "lambda_dependencies_pkg" {
   layer_name = "lambda_dependencies_pkg_layer"
   s3_bucket  = "cv-rendering-pkg-bucket20240723210849196900000001"
