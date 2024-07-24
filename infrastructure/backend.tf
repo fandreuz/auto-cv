@@ -3,11 +3,6 @@ variable "s3_bucket_id" {
   default = "cv-rendering-pkg-bucket20240723210849196900000001"
 }
 
-variable "s3_bucket_key" {
-  type    = string
-  default = "cv_rendering_pkg.zip"
-}
-
 data "aws_iam_policy_document" "assume_role" {
   statement {
     effect = "Allow"
