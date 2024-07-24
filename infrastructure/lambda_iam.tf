@@ -30,29 +30,5 @@ resource "aws_iam_policy" "render_lambda_execution_policy" {
         "sqs:ReceiveMessage",
       ] }
     ]
-
-    Statement = [{
-      Sid       = "AllowInvokingLambdas"
-      Effect    = "Allow"
-      Resources = ["arn:aws:lambda:ap-southeast-1:*:function:*"]
-      Actions   = ["lambda:InvokeFunction"]
-    }]
-
-    Statement = [{
-      Sid       = "AllowCreatingLogGroups"
-      Effect    = "Allow"
-      Resources = ["arn:aws:logs:ap-southeast-1:*:*"]
-      Actions   = ["logs:CreateLogGroup"]
-    }]
-
-    Statement = [{
-      Sid       = "AllowWritingLogs"
-      Effect    = "Allow"
-      Resources = ["arn:aws:logs:ap-southeast-1:*:log-group:/aws/lambda/*:*"]
-      Actions = [
-        "logs:CreateLogStream",
-        "logs:PutLogEvents",
-      ]
-    }]
   })
 }
