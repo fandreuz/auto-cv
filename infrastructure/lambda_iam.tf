@@ -16,7 +16,7 @@ resource "aws_iam_role" "render_lambda_execution_role" {
 
 data "aws_iam_policy_document" "render_lambda_logs_policy" {
   statement {
-    resources = "*"
+    resources = ["*"]
     actions = [
       "logs:CreateLogGroup",
       "logs:CreateLogStream",
