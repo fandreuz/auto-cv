@@ -31,8 +31,8 @@ resource "aws_lambda_event_source_mapping" "work_queue_to_lambda" {
 }
 
 # https://gist.github.com/afloesch/dc7d8865eeb91100648330a46967be25
-resource "aws_iam_role" "assume_role" {
-  name_prefix = "auto-cv-assume-role"
+resource "aws_iam_role" "queue_writer_role" {
+  name_prefix = "auto-cv-queue-writer-role"
 
   assume_role_policy = <<EOF
 {
@@ -100,6 +100,6 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "api" {
-  role       = aws_iam_role.assume_role.name
+  role       = aws_iam_role.queue_writer_role.name
   policy_arn = aws_iam_policy.queue_writer_policy.arn
 }
