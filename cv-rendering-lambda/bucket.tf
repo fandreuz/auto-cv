@@ -47,7 +47,7 @@ resource "aws_s3_object" "dependencies_pkg" {
 
 resource "aws_s3_object" "lambda_code_pkg" {
   bucket      = aws_s3_bucket.cv_rendering_pkg_bucket.id
-  key         = "${var.lambda_code_pkg_filename}"
+  key         = var.lambda_code_pkg_filename
   source      = "${path.module}/${var.lambda_code_pkg_filename}"
   etag        = filemd5("${path.module}/${var.lambda_code_pkg_filename}")
   source_hash = filemd5("${path.module}/${var.lambda_code_pkg_filename}")
