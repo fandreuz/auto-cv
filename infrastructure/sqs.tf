@@ -12,7 +12,7 @@ resource "aws_sqs_queue" "work_queue" {
 }
 
 resource "aws_sqs_queue" "work_queue_dwadletter" {
-  name = "terraform-example-deadletter-queue"
+  name_prefix = "auto-cv-queue-deadletter"
 }
 
 resource "aws_sqs_queue_redrive_allow_policy" "terraform_queue_redrive_allow_policy" {
