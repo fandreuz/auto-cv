@@ -46,7 +46,7 @@ resource "aws_api_gateway_deployment" "gateway" {
   stage_name  = "test"
 }
 
-output "lambda_url" {
+output "auto_cv_url" {
   value = "${aws_api_gateway_deployment.gateway.invoke_url}/${aws_api_gateway_resource.api_resource.path_part}/${aws_api_gateway_resource.cv_resource.path_part}"
 }
 
