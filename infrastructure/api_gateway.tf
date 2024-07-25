@@ -1,6 +1,5 @@
 resource "aws_api_gateway_rest_api" "gateway" {
-  name        = "ServerlessExample"
-  description = "Terraform Serverless Application Example"
+  name = "AutoCV-GW"
 }
 
 resource "aws_api_gateway_resource" "api_resource" {
