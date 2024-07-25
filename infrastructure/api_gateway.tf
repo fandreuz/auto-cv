@@ -80,22 +80,10 @@ resource "aws_api_gateway_integration_response" "gateway_integration_response" {
   resource_id       = aws_api_gateway_resource.cv_resource.id
   http_method       = aws_api_gateway_method.cv_resource.http_method
   status_code       = "200"
-  selection_pattern = "^2[0-9][0-9]"
 
   response_templates = {
     "application/json" = "{\"message\": \"Task scheduled\"}"
   }
 
   depends_on = [aws_api_gateway_integration.gateway_lambda_integration]
-}
-
-resource "aws_api_gateway_method_response" "gateway_method_response" {
-  rest_api_id = aws_api_gateway_rest_api.gateway.id
-  resource_id = aws_api_gateway_resource.cv_resource.id
-  http_method = aws_api_gateway_method.cv_resource.http_method
-  status_code = 200
-
-  response_models = {
-    "application/json" = "Empty"
-  }
 }
